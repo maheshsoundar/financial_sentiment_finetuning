@@ -10,9 +10,9 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 
 
 if __name__ == "__main__":
-    #Prepare data
-    data = DataUtil.read_data(FILE_PATH,INPUT_COL,OUTPUT_COL,FILE_ENCODING) #Please place the file containing dataset and 
-    #update the file path in configs.py
+    #Load data
+    data_dir = os.path.join(os.getcwd(),'data') #The data should be present inside folder 'data' as csv
+    data = DataUtil.read_data(data_dir,INPUT_COL,OUTPUT_COL,FILE_ENCODING)
     sentences = DataUtil.get_sentences(data,INPUT_COL)['input_ids'] #Tokenized sentences using Bert tokenizer
     labels = DataUtil.get_labels(data,OUTPUT_COL)
     x_train,x_test,y_train,y_test = DataUtil.train_test_split(sentences,labels)
